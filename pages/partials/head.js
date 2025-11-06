@@ -3,10 +3,10 @@ const importHead = document.querySelector('#importHead');
 const headHTML = `
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="../../public/assets/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/public/assets/favicon.ico" type="image/x-icon">
 
 <!-- CSS Global -->
-<link rel="stylesheet" href="../../../public/style/global.css">
+<link rel="stylesheet" href="/css/global.css">
 
 <!-- Fonte Estilizada -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@ const headHTML = `
 rel="stylesheet">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="../../../public/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="/public/fontawesome/css/all.min.css">
 `
 
 if (importHead) {

@@ -1,5 +1,4 @@
 window.onload = function () {
-    console.log("Hello World");
 
     const navbarToggle = document.querySelector('#navbar-button-toggle');
     const closeNavbarToggle = document.querySelector('.close-mobile-nav');
@@ -26,7 +25,7 @@ window.onload = function () {
         lastScroll = now;
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
-        console.log(scrollPosition);
+        // console.log(scrollPosition);
 
         if (scrollPosition > 200) {
             navbarWrapper.classList.add('scrolled');

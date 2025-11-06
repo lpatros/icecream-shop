@@ -1,6 +1,4 @@
-import { mockNews, mockIcecream } from '../../util/mockData.js';
-
-console.log('home.js loaded');
+import { mockNews, mockIcecream } from '/database/mockData.js';
 
 function renderNewsHighlight() {
     const container = document.querySelector('#home-shop');
@@ -16,7 +14,7 @@ function renderNewsHighlight() {
             <a href="/news" class="btn-primary">Saiba mais</a>
         </div>
         <picture>
-            <img src="../../../public/${news.imageSrc}" alt="${news.name}">
+            <img src="/${news.imageSrc}" alt="${news.name}">
         </picture>
     `;
 }
@@ -32,7 +30,7 @@ function renderNewerProducts() {
             (p) => `
             <div class="icecream-card-wrapper">
                 <picture>
-                    <img src="../../../public/${p.imageSrc}" alt="${p.name}">
+                    <img src="/${p.imageSrc}" alt="${p.name}">
                 </picture>
                 <div class="card-footer">
                     <p class="text-regular">${p.name}</p>

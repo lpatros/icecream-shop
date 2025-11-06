@@ -8,10 +8,10 @@ const navbarHTML = `
             </picture>
             <nav id="top-navbar" class="content-wrapper-size">
                 <a class="text-regular btn-primary" href="">Inicio</a>
-                <a class="text-regular btn-primary" href="../about.html">Sobre</a>
-                <a class="text-regular btn-primary" href="../products.html">Sorvetes</a>
-                <a class="text-regular btn-primary" href="../news.html">Novidades</a>
-                <a class="text-regular btn-primary" href="../admin.html">Entrar</a>
+                <a class="text-regular btn-primary" href="../about">Sobre</a>
+                <a class="text-regular btn-primary" href="../products">Sorvetes</a>
+                <a class="text-regular btn-primary" href="../news">Novidades</a>
+                <a class="text-regular btn-primary" href="../admin">Entrar</a>
 
                 <button class="close-mobile-nav btn-ghost flex-column" type="button">
                     <i class="fas fa-chevron-left"></i>
