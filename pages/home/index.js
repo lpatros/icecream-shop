@@ -1,6 +1,6 @@
 import { mockNews, mockIcecream } from '/database/mockData.js';
 
-function renderNewsHighlight() {
+const renderNewsHighlight = () => {
     const container = document.querySelector('#home-shop');
     if (!container) return;
 
@@ -19,7 +19,7 @@ function renderNewsHighlight() {
     `;
 }
 
-function renderNewerProducts() {
+const renderNewerProducts = () => {
     const list = document.querySelector('#home-products');
     if (!list) return;
 
@@ -42,7 +42,12 @@ function renderNewerProducts() {
         .join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    renderNewsHighlight();
+export const partials = [
+    "navbar",
+    "footer"
+]
+
+export const render = () => {
     renderNewerProducts();
-});
+    renderNewsHighlight();
+}
