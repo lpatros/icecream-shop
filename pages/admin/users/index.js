@@ -1,40 +1,40 @@
 import { isAuthenticated, getCurrentUser } from "../../../util/authUtils.js";
-import { getProducts } from "../../../util/localStorageUtils.js";
+import { getUsers } from "../../../util/localStorageUtils.js";
 
 export const partials = [
     'navbarAdmin'
 ];
 
-const renderProductsTable = () => {
-    const products = getProducts();
-    const tableBody = document.getElementById('productsTableBody');
+const renderUsersTable = () => {
+    const users = getUsers();
+    const tableBody = document.getElementById('usersTableBody');
     
     if (!tableBody) return;
     
     tableBody.innerHTML = '';
     
-    if (products.length === 0) {
+    if (users.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="5" style="text-align: center; padding: 2rem;">
-                    Nenhum produto cadastrado
+                <td colspan="4" style="text-align: center; padding: 2rem;">
+                    Nenhum admin cadastrado
                 </td>
             </tr>
         `;
         return;
     }
     
-    products.forEach(product => {
+    users.forEach(user => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${product.name}</td>
-            <td>${product.description}</td>
-            <td>R$ ${parseFloat(product.price).toFixed(2)}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.password}</td>
             <td class="flex-row flex-center">
-                <a class="btn-danger icon-button" href="#/admin/products/delete?id=${product.id}" title="Excluir">
+                <a class="btn-danger icon-button" href="#/admin/users/delete?id=${user.id}" title="Excluir">
                     <i class="fas fa-trash-alt"></i>
                 </a>
-                <a class="icon-button" href="#/admin/products/edit?id=${product.id}" title="Editar">
+                <a class="icon-button" href="#/admin/users/edit?id=${user.id}" title="Editar">
                     <i class="fas fa-edit"></i>
                 </a>
             </td>
@@ -55,5 +55,5 @@ export const render = () => {
         userNameElement.textContent = user.name;
     }
     
-    renderProductsTable();
+    renderUsersTable();
 };

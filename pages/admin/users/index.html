@@ -1,0 +1,35 @@
+<div class="admin-container">
+
+    <div id="importNavbarAdmin"></div>
+
+    <main>
+        <header class="content-wrapper-size admin admin-header">
+            <h1 class="heading">Bem vindo, <span id="userName"></span>!</h1>
+            <p class="text-small">Esta é a página de administração do site.</p>
+            <p class="text-small">Você pode gerenciar os admins na tabela abaixo.</p>
+        </header>
+        <article class="content-wrapper-size admin">
+            <div class="flex-row flex-between">
+                <h2 class="heading">Gerenciar Admins</h2>
+                <a class="btn-primary" id="addUserBtn" href="#/admin/users/add">Adicionar Admin</a>
+            </div>
+            <p class="text-small">Adicione, edite ou remova admins do sistema.</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Senha</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Admins serão carregados dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </main>
+
+</div>

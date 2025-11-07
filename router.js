@@ -37,12 +37,12 @@ const routes = {
         "css": '/css/admin.css',
         "js": '/pages/admin/products/index.js'
     },
-    'admin/news': {
+    '/admin/news': {
         "html": '/pages/admin/news',
         "css": '/css/admin.css',
         "js": '/pages/admin/news/index.js'
     },
-    'admin/users': {
+    '/admin/users': {
         "html": '/pages/admin/users',
         "css": '/css/admin.css',
         "js": '/pages/admin/users/index.js'

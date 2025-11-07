@@ -30,7 +30,7 @@ export const isAuthenticated = () => {
             return true;
         }
 
-        logout();
+        logout(true);
         return false;
     }
     
@@ -45,9 +45,15 @@ export const getLoggedUser = () => {
 // Alias para getCurrentUser
 export const getCurrentUser = getLoggedUser;
 
-export const logout = () => {
+export const logout = (expired = false) => {
     sessionStorage.removeItem('loggedUser');
-    window.location.hash = '/admin/login?expired=true';
+
+    if (expired) {
+        window.location.hash = '/admin/login?expired=true';
+        return;
+    }
+
+    window.location.hash = '/admin/login';
 }
 
 export const requireAuth = () => {
