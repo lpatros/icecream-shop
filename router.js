@@ -21,6 +21,10 @@ const routes = {
         "css": '/css/news.css',
         "js": '/pages/news/index.js'
     },
+    '/news/more': {
+        "html": '/pages/news/more',
+        "js": '/pages/news/more/index.js'
+    },
     '/admin/login': {
         "html": '/pages/admin/login',
         "css": '/css/admin.css',
@@ -93,6 +97,8 @@ const loadScript = async (jsPath) => {
 }
 
 const loadContent = async (path) => {
+
+    path = path.split('?')[0];
 
     if (!routes[path]) {
         path = '/404';

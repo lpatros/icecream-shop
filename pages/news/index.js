@@ -42,7 +42,7 @@ const createNewsCard = (news) => {
                 ${news.description}
             </p>
 
-            <a class="btn-primary" href="pages/moreNews.php?id=${news.id}"> Ver mais
+            <a class="btn-primary" href="#/news/more?id=${news.id}"> Ver mais
                 <i class="fas fa chevron-right"></i>
             </a>
         </div>
