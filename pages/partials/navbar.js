@@ -1,5 +1,3 @@
-const navbar = document.querySelector('#importNavbar');
-
 const navbarHTML = `
     <div id="navbar-wrapper">
         <div id="navbar-content-wrapper">
@@ -7,7 +5,7 @@ const navbarHTML = `
                 <img src="/public/assets/logo.png" alt="">
             </picture>
             <nav id="top-navbar" class="content-wrapper-size">
-                <a class="text-regular btn-primary" href="">Inicio</a>
+                <a class="text-regular btn-primary" href="#/home">Inicio</a>
                 <a class="text-regular btn-primary" href="#/about">Sobre</a>
                 <a class="text-regular btn-primary" href="#/products">Sorvetes</a>
                 <a class="text-regular btn-primary" href="#/news">Novidades</a>
@@ -30,10 +28,6 @@ const navbarHTML = `
         </picture>
     </div>
 `;
-
-if (navbar) {
-    navbar.innerHTML = navbarHTML;
-}
 
 const initNavbar = () => {
 
@@ -78,4 +72,11 @@ const initNavbar = () => {
     })
 }
 
-initNavbar();
+export const render = () => {
+    const navbar = document.querySelector('#importNavbar');
+    
+    if (navbar) {
+        navbar.innerHTML = navbarHTML;
+        initNavbar();
+    }
+}

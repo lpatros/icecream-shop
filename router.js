@@ -41,7 +41,12 @@ const loadScript = async (jsPath) => {
         if (module.partials) {
             for (const partial of module.partials) {
                 const partialPath = `/pages/partials/${partial}.js`;
-                await import(partialPath);
+                const partialModule = await import(partialPath);
+                
+                if (partialModule.render) {
+                    partialModule.render();
+                }
+                
                 console.log(`Partial carregado: ${partialPath}`);
             }
         }
