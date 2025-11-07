@@ -4,14 +4,14 @@ const navbarHTML = `
     <div id="navbar-wrapper">
         <div id="navbar-content-wrapper">
             <picture>
-                <img src="../../../public/assets/logo.png" alt="">
+                <img src="/public/assets/logo.png" alt="">
             </picture>
             <nav id="top-navbar" class="content-wrapper-size">
                 <a class="text-regular btn-primary" href="">Inicio</a>
-                <a class="text-regular btn-primary" href="../about">Sobre</a>
-                <a class="text-regular btn-primary" href="../products">Sorvetes</a>
-                <a class="text-regular btn-primary" href="../news">Novidades</a>
-                <a class="text-regular btn-primary" href="../admin">Entrar</a>
+                <a class="text-regular btn-primary" href="#/about">Sobre</a>
+                <a class="text-regular btn-primary" href="#/products">Sorvetes</a>
+                <a class="text-regular btn-primary" href="#/news">Novidades</a>
+                <a class="text-regular btn-primary" href="#/admin">Entrar</a>
 
                 <button class="close-mobile-nav btn-ghost flex-column" type="button">
                     <i class="fas fa-chevron-left"></i>
@@ -26,7 +26,7 @@ const navbarHTML = `
         </button>
 
         <picture>
-            <img src="../../../public/assets/logo.png" alt="">
+            <img src="/public/assets/logo.png" alt="">
         </picture>
     </div>
 `;
@@ -35,11 +35,16 @@ if (navbar) {
     navbar.innerHTML = navbarHTML;
 }
 
-window.onload = function () {
+const initNavbar = () => {
 
     const navbarToggle = document.querySelector('#navbar-button-toggle');
     const closeNavbarToggle = document.querySelector('.close-mobile-nav');
     const navbarWrapper = document.querySelector('#navbar-wrapper');
+
+    if (!navbarToggle || !closeNavbarToggle || !navbarWrapper) {
+        console.warn('Elementos da navbar não encontrados');
+        return;
+    }
 
     closeNavbarToggle.addEventListener('click', function () {
         navbarWrapper.classList.toggle('toggled');
@@ -72,3 +77,5 @@ window.onload = function () {
         navbarWrapper.classList.remove('scrolled');
     })
 }
+
+initNavbar();

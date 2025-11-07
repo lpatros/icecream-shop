@@ -9,7 +9,7 @@ const routes = {
     '/about': {
         "html": '/pages/about',
         "css": '/css/about.css',
-        "js": '/pages/about/about.js'
+        "js": '/pages/about/index.js'
     },
     '/404': {
         "html": '/pages/404',
@@ -30,6 +30,8 @@ const loadStyle = (cssPath) => {
     link.rel = 'stylesheet';
     link.href = cssPath;
     document.head.appendChild(link);
+
+    console.log(`Estilo carregado: ${cssPath}`);
 }
 
 const loadScript = async (jsPath) => {
@@ -40,20 +42,22 @@ const loadScript = async (jsPath) => {
             for (const partial of module.partials) {
                 const partialPath = `/pages/partials/${partial}.js`;
                 await import(partialPath);
+                console.log(`Partial carregado: ${partialPath}`);
             }
         }
 
         if (module.render) {
             module.render();
+            console.log(`Script carregado e renderizado: ${jsPath}`);
         }
-        
+
     } catch (error) {
         console.error('Erro ao carregar script:', error);
     }
 }
 
 const loadContent = async (path) => {
-    
+
     const defaultRoute = '/home';
     const file = routes[path] || routes[defaultRoute];
 
@@ -67,6 +71,8 @@ const loadContent = async (path) => {
         const html = await response.text();
 
         rootContent.innerHTML = html;
+
+        console.log(`Conteúdo carregado: ${file.html}`);
 
         loadStyle(file.css);
 
@@ -88,7 +94,7 @@ const loadContent = async (path) => {
     }
 }
 
-const handleRouting = () =>{
+const handleRouting = () => {
 
     const path = window.location.pathname;
 
@@ -97,11 +103,12 @@ const handleRouting = () =>{
         return;
     }
 
-    if (path === '/') {
+    if (path === '/' && !window.location.hash) {
         window.location.hash = '/home';
-    } 
+        return;
+    }
 
-    const hashPath = window.location.hash.substring(1) || '/home'; 
+    const hashPath = window.location.hash.substring(1) || '/home';
     loadContent(hashPath);
 }
 
