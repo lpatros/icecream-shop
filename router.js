@@ -19,7 +19,14 @@ const routes = {
 };
 
 const loadStyle = (cssPath) => {
+
+    const oldStyle = document.getElementById('page-style');
+    if (oldStyle) {
+        oldStyle.remove();
+    }
+
     const link = document.createElement('link');
+    link.id = 'page-style';
     link.rel = 'stylesheet';
     link.href = cssPath;
     document.head.appendChild(link);
