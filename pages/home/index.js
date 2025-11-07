@@ -1,11 +1,11 @@
-import { mockNews, mockIcecream } from '/database/mockData.js';
+import { getNews, getProducts } from '../../util/localStorageUtils.js';
 
 const renderNewsHighlight = () => {
     const container = document.querySelector('#home-shop');
     if (!container) return;
 
-    // Pega a primeira notícia
-    const news = mockNews[3];
+    // Pega a ultima notícia
+    const news = getNews().slice(-1)[0];
 
     container.innerHTML = `
         <div class="text-wrapper">
@@ -23,8 +23,8 @@ const renderNewerProducts = () => {
     const list = document.querySelector('#home-products');
     if (!list) return;
 
-    // Simula "Lançamentos Recentes": pega até 4 primeiros
-    const items = mockIcecream.slice(0, 3);
+    // Simula "Lançamentos Recentes": pega até os 3 ultimos produtos adicionados
+    const items = getProducts().slice(-3).reverse();
     list.innerHTML = items
         .map(
             (p) => `

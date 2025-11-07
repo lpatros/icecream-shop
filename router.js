@@ -1,3 +1,5 @@
+import { initializeLocalStorage } from './util/localStorageUtils.js';
+
 const rootContent = document.getElementById('root-content');
 
 const routes = {
@@ -27,12 +29,12 @@ const routes = {
     },
     '/admin/login': {
         "html": '/pages/admin/login',
-        "css": '/css/admin.css',
+        "css": '/css/login.css',
         "js": '/pages/admin/login/index.js'
     },
     '/admin/products': {
         "html": '/pages/admin/products',
-        "css": '/css/adminc.css',
+        "css": '/css/admin.css',
         "js": '/pages/admin/products/index.js'
     },
     'admin/news': {
@@ -159,6 +161,9 @@ const handleRouting = () => {
     const hashPath = window.location.hash.substring(1) || '/home';
     loadContent(hashPath);
 }
+
+// Inicializa o LocalStorage com os dados mock na primeira carga
+initializeLocalStorage();
 
 window.addEventListener('hashchange', handleRouting);
 

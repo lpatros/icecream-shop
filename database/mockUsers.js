@@ -16,13 +16,7 @@ export let mockUsers = [
     id: 3,
     name: 'Itallo',
     email: 'itallo@gmail.com',
-    password: '12345678',
-  },
-  {
-    id: 4,
-    name: 'Eduardo Pareto',
-    email: 'pareto@uva.br',
-    password: '12345678',
+    password: '1a2b3c4d',
   },
 ];
 

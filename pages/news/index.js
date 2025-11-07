@@ -1,4 +1,4 @@
-import { mockIcecream, mockNews } from '../../database/mockData.js';
+import { getProducts, getNews } from '../../util/localStorageUtils.js';
 
 export const partials = [
     "navbar",
@@ -61,7 +61,7 @@ const renderNewerProducts = () => {
 
     productsContainer.innerHTML = '';
 
-    const newerProducts = mockIcecream.slice(-2).reverse();
+    const newerProducts = getProducts().slice(-2).reverse();
 
     newerProducts.forEach(product => {
         const productCard = createProductPreviewCard(product);
@@ -79,7 +79,7 @@ const renderNews = () => {
 
     newsContainer.innerHTML = '';
 
-    mockNews.forEach(news => {
+    getNews().forEach(news => {
         const newsCard = createNewsCard(news);
         newsContainer.appendChild(newsCard);
     });

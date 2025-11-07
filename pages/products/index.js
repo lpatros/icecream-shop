@@ -1,4 +1,4 @@
-import { mockIcecream } from '../../database/mockData.js';
+import { getProducts } from "../../util/localStorageUtils.js";
 
 export const partials = [
     "navbar",
@@ -36,7 +36,7 @@ const renderProducts = () => {
 
     productListContainer.innerHTML = '';
 
-    mockIcecream.forEach(product => {
+    getProducts().forEach(product => {
         const productCard = createProductCard(product);
         productListContainer.appendChild(productCard);
     });

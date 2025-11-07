@@ -1,4 +1,4 @@
-import { mockNews } from '../../../database/mockData.js';
+import { getNews } from '../../../util/localStorageUtils.js';
 import { notFoundHtml } from '../../404/index.js';
 
 export const partials = [
@@ -18,7 +18,7 @@ const getNewsIdFromURL = () => {
 }
 
 const findNewsById = (id) => {
-    return mockNews.find(news => news.id === parseInt(id));
+    return getNews().find(news => news.id === parseInt(id));
 }
 
 const renderNewsDetail = () => {
