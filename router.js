@@ -11,10 +11,39 @@ const routes = {
         "css": '/css/about.css',
         "js": '/pages/about/index.js'
     },
+    '/products': {
+        "html": '/pages/products',
+        "css": '/css/products.css',
+        "js": '/pages/products/index.js'
+    },
+    '/news': {
+        "html": '/pages/news',
+        "css": '/css/news.css',
+        "js": '/pages/news/index.js'
+    },
+    '/admin/login': {
+        "html": '/pages/admin/login',
+        "css": '/css/admin.css',
+        "js": '/pages/admin/login/index.js'
+    },
+    '/admin/products': {
+        "html": '/pages/admin/products',
+        "css": '/css/adminc.css',
+        "js": '/pages/admin/products/index.js'
+    },
+    'admin/news': {
+        "html": '/pages/admin/news',
+        "css": '/css/admin.css',
+        "js": '/pages/admin/news/index.js'
+    },
+    'admin/users': {
+        "html": '/pages/admin/users',
+        "css": '/css/admin.css',
+        "js": '/pages/admin/users/index.js'
+    },
     '/404': {
         "html": '/pages/404',
-        "css": '/css/404.css',
-        "js": '/pages/404/404.js'
+        "js": '/pages/404/index.js'
     }
 };
 
@@ -25,13 +54,15 @@ const loadStyle = (cssPath) => {
         oldStyle.remove();
     }
 
+    if (!cssPath) return;
+
     const link = document.createElement('link');
     link.id = 'page-style';
     link.rel = 'stylesheet';
     link.href = cssPath;
     document.head.appendChild(link);
 
-    console.log(`Estilo carregado: ${cssPath}`);
+    // console.log(`Estilo carregado: ${cssPath}`);
 }
 
 const loadScript = async (jsPath) => {
@@ -42,18 +73,18 @@ const loadScript = async (jsPath) => {
             for (const partial of module.partials) {
                 const partialPath = `/pages/partials/${partial}.js`;
                 const partialModule = await import(partialPath);
-                
+
                 if (partialModule.render) {
                     partialModule.render();
                 }
-                
-                console.log(`Partial carregado: ${partialPath}`);
+
+                // console.log(`Partial carregado: ${partialPath}`);
             }
         }
 
         if (module.render) {
             module.render();
-            console.log(`Script carregado e renderizado: ${jsPath}`);
+            // console.log(`Script carregado e renderizado: ${jsPath}`);
         }
 
     } catch (error) {
@@ -62,6 +93,10 @@ const loadScript = async (jsPath) => {
 }
 
 const loadContent = async (path) => {
+
+    if (!routes[path]) {
+        path = '/404';
+    }
 
     const defaultRoute = '/home';
     const file = routes[path] || routes[defaultRoute];
@@ -77,7 +112,7 @@ const loadContent = async (path) => {
 
         rootContent.innerHTML = html;
 
-        console.log(`Conteúdo carregado: ${file.html}`);
+        // console.log(`Conteúdo carregado: ${file.html}`);
 
         loadStyle(file.css);
 
@@ -88,6 +123,8 @@ const loadContent = async (path) => {
         console.error('Erro ao carregar conteúdo:', error);
 
         const errorPageResponse = await fetch(routes['/404'].html);
+        loadStyle(routes['/404'].css);
+        loadScript(routes['/404'].js);
 
         if (!errorPageResponse.ok) {
             rootContent.innerHTML = '<h1>Erro 404: Página não encontrada</h1>';
