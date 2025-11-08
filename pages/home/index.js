@@ -11,10 +11,10 @@ const renderNewsHighlight = () => {
         <div class="text-wrapper">
             <h1 class="heading">${news.name}</h1>
             <p class="text-regular">${news.description}</p>
-            <a href="/news" class="btn-primary">Saiba mais</a>
+            <a href="#/news" class="btn-primary">Saiba mais</a>
         </div>
         <picture>
-            <img src="/${news.imageSrc}" alt="${news.name}">
+            <img src="${news.imageSrc}" alt="${news.name}">
         </picture>
     `;
 }
@@ -30,7 +30,7 @@ const renderNewerProducts = () => {
             (p) => `
             <div class="icecream-card-wrapper">
                 <picture>
-                    <img src="/${p.imageSrc}" alt="${p.name}">
+                    <img src="${p.imageSrc}" alt="${p.name}">
                 </picture>
                 <div class="card-footer">
                     <p class="text-regular">${p.name}</p>
