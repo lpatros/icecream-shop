@@ -54,6 +54,14 @@ export const render = () => {
     if (userNameElement && user) {
         userNameElement.textContent = user.name;
     }
+
+    if (window.location.hash.includes('selfDelete=true')) {
+        const errorMessageElement = document.getElementById('errorMessage');
+        if (errorMessageElement) {
+            errorMessageElement.textContent = 'Você não pode excluir o seu próprio usuário!';
+            errorMessageElement.style.display = 'block';
+        }
+    }
     
     renderUsersTable();
 };
