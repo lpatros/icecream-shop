@@ -1,170 +1,107 @@
 import { initializeLocalStorage } from './util/localStorageUtils.js';
+import { routes } from './util/routes.js';
 
 const rootContent = document.getElementById('root-content');
-
-const routes = {
-    '/home': {
-        "html": '/pages/home',
-        "css": '/css/home.css',
-        "js": '/pages/home/index.js'
-    },
-    '/about': {
-        "html": '/pages/about',
-        "css": '/css/about.css',
-        "js": '/pages/about/index.js'
-    },
-    '/products': {
-        "html": '/pages/products',
-        "css": '/css/products.css',
-        "js": '/pages/products/index.js'
-    },
-    '/news': {
-        "html": '/pages/news',
-        "css": '/css/news.css',
-        "js": '/pages/news/index.js'
-    },
-    '/news/more': {
-        "html": '/pages/news/more',
-        "js": '/pages/news/more/index.js'
-    },
-    '/admin/login': {
-        "html": '/pages/admin/login',
-        "css": '/css/login.css',
-        "js": '/pages/admin/login/index.js'
-    },
-    '/admin/products': {
-        "html": '/pages/admin/products',
-        "css": '/css/admin.css',
-        "js": '/pages/admin/products/index.js'
-    },
-    '/admin/news': {
-        "html": '/pages/admin/news',
-        "css": '/css/admin.css',
-        "js": '/pages/admin/news/index.js'
-    },
-    '/admin/users': {
-        "html": '/pages/admin/users',
-        "css": '/css/admin.css',
-        "js": '/pages/admin/users/index.js'
-    },
-    '/404': {
-        "html": '/pages/404',
-        "js": '/pages/404/index.js'
-    }
-};
+const DEFAULT_ROUTE = '/home';
+const NOT_FOUND_ROUTE = '/404';
 
 const loadStyle = (cssPath) => {
-
-    const oldStyle = document.getElementById('page-style');
-    if (oldStyle) {
-        oldStyle.remove();
-    }
-
+    document.getElementById('page-style')?.remove();
+    
     if (!cssPath) return;
 
     const link = document.createElement('link');
-    link.id = 'page-style';
-    link.rel = 'stylesheet';
-    link.href = cssPath;
+    Object.assign(link, {
+        id: 'page-style',
+        rel: 'stylesheet',
+        href: cssPath
+    });
     document.head.appendChild(link);
-
-    // console.log(`Estilo carregado: ${cssPath}`);
 }
+
+const loadPartial = async (partialName) => {
+    try {
+        const partialModule = await import(`/pages/partials/${partialName}.js`);
+        partialModule.render?.();
+
+    } catch (error) {
+        console.error(`Erro ao carregar partial ${partialName}:`, error);
+    }
+};
 
 const loadScript = async (jsPath) => {
     try {
         const module = await import(jsPath);
 
-        if (module.partials) {
-            for (const partial of module.partials) {
-                const partialPath = `/pages/partials/${partial}.js`;
-                const partialModule = await import(partialPath);
-
-                if (partialModule.render) {
-                    partialModule.render();
-                }
-
-                // console.log(`Partial carregado: ${partialPath}`);
-            }
+        if (module.partials?.length) {
+            await Promise.all(module.partials.map(loadPartial));
         }
 
-        if (module.render) {
-            module.render();
-            // console.log(`Script carregado e renderizado: ${jsPath}`);
-        }
-
+        module.render?.();
     } catch (error) {
         console.error('Erro ao carregar script:', error);
     }
 }
 
+const fetchPageHtml = async (routeConfig) => {
+    const response = await fetch(routeConfig.html);
+    if (!response.ok) throw new Error('Página não encontrada');
+    return response.text();
+};
+
+const renderPage = async (routeConfig, html) => {
+    rootContent.innerHTML = html;
+    loadStyle(routeConfig.css);
+    await loadScript(routeConfig.js);
+};
+
+const load404Page = async () => {
+    try {
+        const html = await fetchPageHtml(routes[NOT_FOUND_ROUTE]);
+        await renderPage(routes[NOT_FOUND_ROUTE], html);
+
+    } catch {
+        rootContent.innerHTML = '<h1>Erro 404: Página não encontrada</h1>';
+    }
+};
+
 const loadContent = async (path) => {
 
     path = path.split('?')[0];
 
-    if (!routes[path]) {
-        path = '/404';
-    }
-
-    const defaultRoute = '/home';
-    const file = routes[path] || routes[defaultRoute];
+    const routeConfig = routes[path] || routes[NOT_FOUND_ROUTE];
 
     try {
-        const response = await fetch(file.html);
-
-        if (!response.ok) {
-            throw new Error('Página não encontrada');
-        }
-
-        const html = await response.text();
-
-        rootContent.innerHTML = html;
-
-        // console.log(`Conteúdo carregado: ${file.html}`);
-
-        loadStyle(file.css);
-
-        loadScript(file.js);
+        const html = await fetchPageHtml(routeConfig);
+        await renderPage(routeConfig, html);
 
     } catch (error) {
-
         console.error('Erro ao carregar conteúdo:', error);
-
-        const errorPageResponse = await fetch(routes['/404'].html);
-        loadStyle(routes['/404'].css);
-        loadScript(routes['/404'].js);
-
-        if (!errorPageResponse.ok) {
-            rootContent.innerHTML = '<h1>Erro 404: Página não encontrada</h1>';
-            return;
-        }
-
-        const errorPageHtml = await errorPageResponse.text();
-        rootContent.innerHTML = errorPageHtml;
+        await load404Page();
     }
 }
 
 const handleRouting = () => {
+    const { pathname, hash } = window.location;
 
-    const path = window.location.pathname;
-
-    if (path === '/index.html') {
+    if (pathname === '/index.html') {
         window.location.href = '/';
         return;
     }
 
-    if (path === '/' && !window.location.hash) {
-        window.location.hash = '/home';
+    if (pathname === '/' && !hash) {
+        window.location.hash = DEFAULT_ROUTE;
         return;
     }
 
-    const hashPath = window.location.hash.substring(1) || '/home';
+    const hashPath = hash.substring(1) || DEFAULT_ROUTE;
     loadContent(hashPath);
-}
+};
 
-// Inicializa o LocalStorage com os dados mock na primeira carga
-initializeLocalStorage();
+const initializeApp = () => {
+    initializeLocalStorage();
+    window.addEventListener('hashchange', handleRouting);
+    window.addEventListener('DOMContentLoaded', handleRouting);
+};
 
-window.addEventListener('hashchange', handleRouting);
-
-window.addEventListener('DOMContentLoaded', handleRouting);
+initializeApp();
