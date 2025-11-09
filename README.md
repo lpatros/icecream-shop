@@ -69,4 +69,4 @@ O projeto está disponivel para acesso [aqui](https://demo-icecream-shop.vercel.
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT.
+Este projeto está licenciado sob a Licença [MIT](https://github.com/lpatros/demo-icecream-shop/blob/main/LICENSE.txt).
