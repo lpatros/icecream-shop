@@ -3,7 +3,7 @@ export let mockUsers = [
   {
     id: 1,
     name: 'Gabriel',
-    email: 'gabrielnathan929@gmail.com',
+    email: 'gabrielnathan@gmail.com',
     password: 'abcdefgh',
   },
   {
