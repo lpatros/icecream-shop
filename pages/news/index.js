@@ -79,7 +79,9 @@ const renderNews = () => {
 
     newsContainer.innerHTML = '';
 
-    getNews().forEach(news => {
+    const newerNews = getNews().reverse()
+
+    newerNews.forEach(news => {
         const newsCard = createNewsCard(news);
         newsContainer.appendChild(newsCard);
     });
