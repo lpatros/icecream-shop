@@ -5,7 +5,7 @@
     <div style="margin-bottom: 10px">
     <img src="https://img.shields.io/badge/Language-JavaScript-yellow.svg" alt="Language: JavaScript"/>
     <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5"/>
-    <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white" alt="CSS3"/>
+    <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css&logoColor=white" alt="CSS3"/>
     <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"/>
     </div>
     <br>
