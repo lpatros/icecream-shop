@@ -5,7 +5,7 @@ const footerHTML = `
             <p>2025</p>
 
             <div class="social-media-wrapper">
-                <a href="https://github.com">
+                <a href="https://github.com/lpatros/demo-icecream-shop">
                     <i class="fab fa-github"></i>
                 </a>
                 <a href="https://www.instagram.com/">

@@ -21,7 +21,7 @@
 
 ## Descrição
 
-Este projeto é uma aplicação web SPA (Single Page Application) desenvolvida como uma versão demonstrativa da **[Fábrica de Delícias]()** para o gerenciamento de uma sorveteria. O projeto implementa um sistema completo com área pública para visualização de produtos e notícias, além de um painel administrativo robusto para gerenciamento de produtos, notícias e usuários.
+Este projeto é uma aplicação web SPA (Single Page Application) desenvolvida como uma versão demonstrativa da **[Fábrica de Delícias](https://github.com/lpatros/icecream-shop)** para o gerenciamento de uma sorveteria. O projeto implementa um sistema completo com área pública para visualização de produtos e notícias, além de um painel administrativo robusto para gerenciamento de produtos, notícias e usuários.
 
 Essa versão demonstrativa utiliza JavaScript, roteamento client-side baseado em hash, e LocalStorage para persistência de dados.
 
