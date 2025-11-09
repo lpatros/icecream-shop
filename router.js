@@ -1,4 +1,4 @@
-import { initializeLocalStorage } from './util/localStorageUtils.js';
+import { initializeLocalStorage, syncMockDataWithLocalStorage } from './util/localStorageUtils.js';
 import { routes } from './util/routes.js';
 
 const rootContent = document.getElementById('root-content');
@@ -100,6 +100,7 @@ const handleRouting = () => {
 
 const initializeApp = () => {
     initializeLocalStorage();
+    syncMockDataWithLocalStorage();
     window.addEventListener('hashchange', handleRouting);
     window.addEventListener('DOMContentLoaded', handleRouting);
 };

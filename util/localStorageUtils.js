@@ -63,6 +63,67 @@ export const resetToDefaultData = () => {
     console.log('Dados reinicializados com valores padrão');
 };
 
+export const syncMockDataWithLocalStorage = () => {
+    const currentProducts = getProducts();
+    const currentNews = getNews();
+    const currentUsers = getUsers();
+
+    let hasUpdates = false;
+
+    // Verifica se os dados mock são diferentes dos dados do localStorage
+    const productsNeedUpdate = JSON.stringify(currentProducts) !== JSON.stringify(mockIcecream);
+    const newsNeedUpdate = JSON.stringify(currentNews) !== JSON.stringify(mockNews);
+    const usersNeedUpdate = JSON.stringify(currentUsers) !== JSON.stringify(mockUsers);
+
+    // Atualiza apenas os dados que são diferentes
+    if (productsNeedUpdate) {
+        // Mantém os produtos adicionados pelo usuário e atualiza os existentes do mock
+        const userAddedProducts = currentProducts.filter(
+            product => !mockIcecream.some(mock => mock.id === product.id)
+        );
+        
+        // Combina produtos do mock atualizados com produtos adicionados pelo usuário
+        const syncedProducts = [...mockIcecream, ...userAddedProducts];
+        saveProducts(syncedProducts);
+        console.log('Produtos sincronizados com os dados mock');
+        hasUpdates = true;
+    }
+
+    if (newsNeedUpdate) {
+        // Mantém as notícias adicionadas pelo usuário e atualiza as existentes do mock
+        const userAddedNews = currentNews.filter(
+            news => !mockNews.some(mock => mock.id === news.id)
+        );
+        
+        // Combina notícias do mock atualizadas com notícias adicionadas pelo usuário
+        const syncedNews = [...mockNews, ...userAddedNews];
+        saveNews(syncedNews);
+        console.log('Notícias sincronizadas com os dados mock');
+        hasUpdates = true;
+    }
+
+    if (usersNeedUpdate) {
+        // Mantém os usuários adicionados pelo usuário e atualiza os existentes do mock
+        const userAddedUsers = currentUsers.filter(
+            user => !mockUsers.some(mock => mock.id === user.id)
+        );
+        
+        // Combina usuários do mock atualizados com usuários adicionados pelo usuário
+        const syncedUsers = [...mockUsers, ...userAddedUsers];
+        saveUsers(syncedUsers);
+        console.log('Usuários sincronizados com os dados mock');
+        hasUpdates = true;
+    }
+
+    if (hasUpdates) {
+        console.log('Sincronização concluída: dados atualizados');
+    } else {
+        console.log('Sincronização concluída: nenhuma atualização necessária');
+    }
+
+    return hasUpdates;
+};
+
 export default {
     initializeLocalStorage,
     getProducts,
@@ -73,5 +134,6 @@ export default {
     saveUsers,
     clearAllData,
     resetToDefaultData,
+    syncMockDataWithLocalStorage,
     STORAGE_KEYS
 };
