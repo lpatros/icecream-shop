@@ -1,7 +1,9 @@
+[PT-BR](README-PTBR.md)
+
 <div align="center">
   <img src="public/assets/logo.png" alt="Fabrica de Delicias Logo" width="200" style="margin-bottom: 30px;">
   <h1 style="font-size: 32px; border: none; line-height: 0; font-weight: bold">Fábrica de Delícias</h1>
-  <p>Uma aplicação web para gerenciamento de sorveteria com painel administrativo completo</p>
+  <p>A web application for ice cream shop management with a complete admin panel</p>
     <div style="margin-bottom: 10px">
     <img src="https://img.shields.io/badge/Language-JavaScript-yellow.svg" alt="Language: JavaScript"/>
     <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5"/>
@@ -11,62 +13,65 @@
     <br>
 </div>
 
-# Links Rápidos
+# Quick Links
 
-- [Descrição](#descrição)
-- [Funcionalidades](#funcionalidades)
-- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Description](#description)
+- [Features](#features)
+- [Project Structure](#project-structure)
 - [Deploy](#deploy)
-- [Licença](#licença)
+- [License](#license)
 
-## Descrição
+## Description
 
-Este projeto é uma aplicação web SPA (Single Page Application) desenvolvida como uma versão demonstrativa da **[Fábrica de Delícias](https://github.com/itallovidal/icecream-shop)** para o gerenciamento de uma sorveteria. O projeto implementa um sistema completo com área pública para visualização de produtos e notícias, além de um painel administrativo robusto para gerenciamento de produtos, notícias e usuários.
+This project is a SPA (Single Page Application) web app developed as a demo version of **[Fábrica de Delícias](https://github.com/lpatros/icecream-shop/tree/php)** for ice cream shop management. It implements a complete system with a public area for viewing products and news, plus a robust admin panel for managing products, news, and users.
 
-Essa versão demonstrativa utiliza JavaScript, roteamento client-side baseado em hash, e LocalStorage para persistência de dados.
+This demo version uses JavaScript, client-side hash-based routing, and LocalStorage for data persistence.
 
-## Funcionalidades
+## Features
 
-### Área Pública
-- **Home**: Página inicial com destaques e lançamentos recentes
-- **Produtos**: Catálogo de sorvetes
-- **Notícias**: Notícias e novidades
-- **Sobre**: Informações sobre a empresa
+### Public Area
 
-### Painel Administrativo
-- **Autenticação**: Sistema de login com validação
-- **Gestão de Produtos**: CRUD completo (Criar, Ler, Atualizar, Deletar) de sorvetes
-- **Gestão de Notícias**: CRUD completo de notícias e artigos
-- **Gestão de Usuários**: CRUD completo de usuários administrativos
-- **Modal de Confirmação**: Sistema de confirmação para operações de exclusão
+- **Home**: Landing page with highlights and recent releases
+- **Products**: Ice cream catalog
+- **News**: News and updates
+- **About**: Company information
 
-## Estrutura do Projeto
+### Admin Panel
+
+- **Authentication**: Login system with validation
+- **Product Management**: Full CRUD (Create, Read, Update, Delete) for ice creams
+- **News Management**: Full CRUD for news and articles
+- **User Management**: Full CRUD for admin users
+- **Confirmation Modal**: Confirmation system for delete operations
+
+## Project Structure
 
 ```
 demo-icecream-shop/
-├── css/                    # Estilos CSS
+├── css/                    # CSS styles
 │
-├── database/               # Dados mock
+├── database/               # Mock data
 │
-├── images/                 # Imagens do site
+├── images/                 # Site images
 │
-├── pages/                  # Páginas da aplicação
+├── pages/                  # Application pages
 │
-├── public/                 # Arquivos públicos
-│   ├── assets/             # Assets (logos, imagens)
-│   └── fontawesome/        # Biblioteca Font Awesome
+├── public/                 # Public files
+│   ├── assets/             # Assets (logos, images)
+│   └── fontawesome/        # Font Awesome library
 │
-├── util/                   # Utilitários e helpers
+├── util/                   # Utilities and helpers
 │
-├── index.html              # Ponto de entrada da aplicação
-├── router.js               # Sistema de roteamento SPA
-└── README.md               # Documentação do projeto
+├── index.html              # Application entry point
+├── router.js               # SPA routing system
+├── README-PTBR.md          # Documentation in Portuguese
+└── README.md               # Documentation in English
 ```
 
 ## Deploy
 
-O projeto está disponivel para acesso [aqui](https://demo-icecream-shop.vercel.app/#/home).
+The project is available [here](https://fabricadedelicias.vercel.app).
 
-## Licença
+## License
 
-Este projeto está licenciado sob a Licença [MIT](https://github.com/lpatros/demo-icecream-shop/blob/main/LICENSE.txt).
+This project is licensed under the [MIT License](LICENSE.txt).
