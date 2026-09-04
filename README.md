@@ -1,8 +1,10 @@
-[PT-BR](README-PTBR.md)
-
 <div align="center">
   <img src="public/assets/logo.png" alt="Fabrica de Delicias Logo" width="200" style="margin-bottom: 30px;">
-  <h1 style="font-size: 32px; border: none; line-height: 0; font-weight: bold">Fábrica de Delícias</h1>
+
+# Fábrica de Delícias
+
+**English** | [Português](README-PTBR.md)
+
   <p>PHP/MySQL web app for managing an ice cream shop with a full admin dashboard</p>
     <div style="margin-bottom: 10px">
     <img src="https://img.shields.io/badge/Language-PHP-777BB4?logo=php&logoColor=white" alt="Language: PHP"/>
